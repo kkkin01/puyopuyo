@@ -15,7 +15,8 @@ public:
 	void UpdatateKey();//key“ü—Í
 	void DisplayRotate(int x, double y, int r, int c1, int c2);//ŠeŒü‚«‚Ì‚Õ‚æ•`‰æ
 	void PlayPuyo();
-	int FinishCheck();
+	int FinishCheck();//I—¹”»’è
+	int FinishCheck(bool b);
 
 private:
 	puyo P;

@@ -8,6 +8,7 @@ using namespace std;
 
 stage::stage() {
 	imageBack = LoadGraph("nc77891.jpg");
+	imageBatu = LoadGraph("batu.png");
 	scorePoint = 0;
 	int ceil[8] = { 0,13,13,13,13,13,13,0 };
 	for (int i = 0; i < StageWidth; ++i) {
@@ -27,6 +28,7 @@ stage::stage() {
 void stage::Display() {
 	DrawExtendGraph(0, 0, 640, 480, imageBack, false);
 	DrawBox(PlacePuyo(0, displayx), PlacePuyo(1, displayx), PlacePuyo(8, displayx), PlacePuyo(14, displayy),black, true);
+	DrawExtendGraph(PlacePuyo(3, displayx), PlacePuyo(1, displayx), PlacePuyo(3, displayy) + 16, PlacePuyo(1, displayx)+16, imageBatu, TRUE);
 	for (int i = 0; i < StageWidth; ++i) {
 		for (int j = 1; j < StageHeight; ++j) {
 			if (stagecell[i][j]!=5) {
@@ -145,10 +147,17 @@ void stage::DisplayScore() {
 	DrawFormatString(200, 350, GetColor(255, 255, 255), "%d", scorePoint);
 }
 void stage::IntegrityCheck() {
-	for (int i; i < StageWidth; i++) {
+	for (int i=0; i < StageWidth-1; i++) {
 		if (ceil[i] > 13) {
 			ceil[i] = 13;
 		}
+	}
+	for (int y = 0; y < StageHeight; ++y) {
+		stagecell[0][y] = 4;
+		stagecell[StageWidth - 1][y] = 4;
+	}
+	for (int x = 0; x < StageWidth; ++x) {
+		stagecell[x][StageHeight - 1] = 4;
 	}
 
 }

@@ -31,6 +31,7 @@ private:
 	bool checkedPuyo[StageWidth][StageHeight];
 	int countChain=0;
 	int imageBack;//”wŒi‰æ‘œ
+	int imageBatu;
 	int black = GetColor(0, 0, 0);//•
 public:
 	int stagecell[StageWidth][StageHeight];

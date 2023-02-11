@@ -222,9 +222,23 @@ void player::UpdatateKey() {
 }
 int player::FinishCheck() { //ゲームオーバー判定
     bool finish = false;
-    if (S.stagecell[3][2] != 5) {
+    if (S.stagecell[3][1] != 5) {
         endGame = true;
         return S.scorePoint; 
+    }
+    for (int i = 1; i <= 6; i++) {
+        if (S.stagecell[i][0] != 5) {
+            endGame = true;
+            return S.scorePoint;
+        }
+    }
+  
+    return 0;
+}
+int player::FinishCheck(bool b) {//未使用 消してもいい
+    if (b == true) {
+        endGame = true;
+        return S.scorePoint;
     }
     else {
         return 0;
@@ -241,6 +255,7 @@ void player::PlayPuyo() {
         puyoY += puyoS;
         DisplayRotate(puyoX, puyoY, puyoR, puyoC1, puyoC2);
         FallCheck();
+        S.IntegrityCheck();
     }
     P.DisplayNextPuyo();
 
